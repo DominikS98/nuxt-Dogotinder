@@ -2,10 +2,13 @@
   <div>
     <ul>
       <li>
-        <NuxtLink to="/dodaj">psitinder </NuxtLink>
+        <NuxtLink to="/dodaj">Psitinder </NuxtLink>
       </li>
       <li>
-        <NuxtLink to="/przeglondaj">zobacz rasy </NuxtLink>
+        <NuxtLink to="/przeglondaj">Zobacz rasy </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/">Strona główna</NuxtLink>
       </li>
     </ul>
   </div>
