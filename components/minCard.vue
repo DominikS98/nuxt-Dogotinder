@@ -1,9 +1,9 @@
 <template>
-  <div class="card">
+  <div class="card" @click="moreInfo(dog)">
     <section class="card_image">
-      <img src="https://cdn2.thedogapi.com/images/BJa4kxc4X.jpg" />
+      <img :src="`${dog.image}`" />
       <div class="card_title title-white">
-        <p>Card Title</p>
+        <p>{{ dog.name }}</p>
       </div>
     </section>
   </div>
@@ -11,22 +11,26 @@
 
 <script>
 export default {
+  props: ["dog"],
   data() {
-    return {
-      img: "https://cdn2.thedogapi.com/images/BJa4kxc4X.jpg",
-    };
+    return {};
+  },
+  methods: {
+    moreInfo(data) {
+      this.$emit("open-Info", data);
+    },
   },
 };
 </script>
 <style scoped>
 .card {
   position: relative;
-  min-width: 20%;
+  min-width: 40vh;
   max-width: 20%;
   height: 300px;
-  box-shadow: 5px 5px 30px 7px rgba(0, 0, 0, 0.25),
-    -5px -5px 30px 7px rgba(0, 0, 0, 0.22);
-  margin: 30px 0;
+  box-shadow: 5px 5px 30px 7px rgba(98, 47, 238, 0.3),
+    -5px -5px 30px 7px rgba(98, 47, 238, 0.22);
+  margin: 30px 10px;
   transition: 0.5s;
   border-radius: 40px;
   overflow: hidden;
@@ -49,7 +53,8 @@ export default {
   position: relative;
   color: rgb(255, 251, 251);
   text-shadow: 0px 0px 5px rgb(5, 5, 5);
-  top: -20%;
+  top: -25%;
   text-align: center;
+  font-size: 2rem;
 }
 </style>
