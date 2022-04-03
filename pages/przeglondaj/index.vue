@@ -2,8 +2,14 @@
   <div class="box">
     <section class="Menu_box"><Menu /></section>
     <div class="tags_box">
-      <input type="text" placeholder="Rasa" />
-      <button type="submit">szukaj</button>
+      <input
+        type="text"
+        id="breeds"
+        placeholder="Rasa"
+        v-model="valueOfInput"
+        @keyup="searchDogs"
+      />
+      <button type="submit" @click="searchDogs">szukaj</button>
       <select name="dogFor" id="dogFor">
         <option value="" selected>Dla kogo</option>
         <option value="hunting">hunting</option>
@@ -40,6 +46,9 @@ export default {
     return {
       seeMoreAbaut: "",
       dogsTocomponent: [],
+      allDogs: [],
+      foundDogs: [],
+      valueOfInput: "",
     };
   },
   async asyncData() {
@@ -59,11 +68,19 @@ export default {
   methods: {
     useData() {
       const dogs = this.cos;
-      let bred_for = [];
-
+      let bredsFor;
+      let temperament;
       dogs.forEach((item) => {
-        if (item.bred_for != undefined) console.log(item.bred_for.split(","));
-
+        if (item.bred_for != undefined) {
+          bredsFor = item.bred_for.split(",");
+          temperament = item.temperament.split(",");
+          for (let i = 0; i < bredsFor.length; i++) {
+            bredsFor[i] = bredsFor[i].replace(" ", "");
+          }
+          for (let i = 0; i < temperament.length; i++) {
+            temperament[i] = temperament[i].replace(" ", "");
+          }
+        }
         const dog = {
           breed_group: item.breed_group,
           height: item.height.metric,
@@ -75,14 +92,30 @@ export default {
           image: item.image.url,
           name: item.name,
         };
-        this.dogsTocomponent.push(dog);
+        this.allDogs.push(dog);
       });
+      this.dogsTocomponent = this.allDogs;
     },
     info(data) {
       this.seeMoreAbaut = data;
     },
     close() {
       this.seeMoreAbaut = [];
+    },
+    searchDogs() {
+      if (this.valueOfInput != "") {
+        setTimeout(() => {
+          this.foundDogs = [];
+          this.dogsTocomponent.forEach((element) => {
+            if (element.name.toLowerCase().includes(this.valueOfInput)) {
+              this.foundDogs.push(element);
+            }
+          });
+          this.dogsTocomponent = this.foundDogs;
+        }, 1000);
+      } else {
+        this.dogsTocomponent = this.allDogs;
+      }
     },
   },
 };
