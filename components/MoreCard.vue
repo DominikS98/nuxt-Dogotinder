@@ -6,10 +6,10 @@
     </div>
     <div class="card_data">
       <p><b>Nazwa: </b>{{ dog.name }}</p>
-      <p><b>Wyskość: </b>{{ dog.height }}</p>
-      <p><b>Długość: </b>{{ dog.weight }}</p>
-      <p><b>Rasa dla: </b>{{ dog.bred_for }}</p>
-      <p><b>Grupa Prasy: </b>{{ dog.breed_group }}</p>
+      <p><b>Wyskość: </b>{{ dog.height }} cm</p>
+      <p><b>Długość: </b>{{ dog.weight }} cm</p>
+      <p><b>Rasa do: </b>{{ dog.bred_for }}</p>
+      <p><b>Grupa rasy: </b>{{ dog.breed_group }}</p>
       <p><b>Długość życia: </b>{{ dog.life_span }}</p>
       <p><b>Temperament: </b>{{ dog.temperament }}</p>
     </div>
