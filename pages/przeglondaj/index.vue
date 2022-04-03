@@ -9,7 +9,6 @@
         v-model="valueOfInput"
         @keyup="searchDogs"
       />
-      <button type="submit" @click="searchDogs">szukaj</button>
 
       <select
         v-model="valueOfdogFor"
@@ -214,8 +213,34 @@ export default {
   height: 100%;
 }
 .tags_box {
-  margin-top: 5rem;
+  margin: 5rem auto 0 auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+  width: 70%;
+}
+.tags_box input {
+  padding: 10px;
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+select {
+  padding: 0 20px;
+  font-size: 1.5rem;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.192);
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+select:hover,
+select:focus,
+input:hover,
+input:focus {
+  opacity: 1;
+  border-bottom: 1px solid black;
 }
 </style>

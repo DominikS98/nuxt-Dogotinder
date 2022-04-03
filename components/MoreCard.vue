@@ -1,5 +1,7 @@
 <template>
   <div class="card">
+    <div class="blue"></div>
+    <div class="green"></div>
     <span @click="$emit('close-Info')">X</span>
     <div class="card_img">
       <img :src="`${dog.image}`" />
@@ -26,11 +28,11 @@ export default {
   position: fixed;
   display: flex;
   align-items: center;
+  overflow: hidden;
   width: 60%;
-  height: 50%;
   border-radius: 40px;
-  top: 5%;
-  background-color: rgba(0, 0, 0, 0.733);
+  top: 10%;
+  background-color: rgba(255, 255, 255, 0.808);
   z-index: 10;
   box-shadow: 5px 5px 30px 7px rgba(98, 47, 238, 0.3),
     -5px -5px 30px 7px rgba(98, 47, 238, 0.22);
@@ -39,13 +41,15 @@ export default {
 }
 .card_img {
   margin: 0 10px;
-  width: 35%;
-  height: 300px;
+  min-width: 30%;
+  max-width: 30%;
+  transform: skew(10deg, -10deg);
+  overflow: hidden;
+  margin: 3rem;
 }
 .card_img img {
   object-fit: cover;
   max-width: 100%;
-  height: 300px;
 }
 .card_title {
   width: 65%;
@@ -54,21 +58,48 @@ b {
   font-size: 3ch;
 }
 p {
-  font-size: 2.7ch;
+  font-size: 3ch;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  color: rgb(255, 251, 251);
-  text-shadow: 0px 0px 5px rgb(5, 5, 5);
+  color: rgba(7, 0, 0, 0.788);
+  text-shadow: 0px 0px 5px rgb(77, 76, 76);
+}
+p::after {
+  position: absolute;
+  display: block;
+  content: '';
+  border: 1px solid rgb(71, 231, 119);
+  width: 10%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 span {
   position: absolute;
   right: 5%;
   top: 5%;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   font-size: 5ch;
   cursor: pointer;
   transition: 0.5s;
 }
 span:hover {
   transform: scale(0.9);
+}
+.blue,
+.green {
+  padding: 250px;
+  position: absolute;
+  z-index: -1;
+  border-radius: 50% 30%;
+}
+.green {
+  left: -10%;
+  top: -20%;
+  background-color: rgba(49, 238, 49, 0.781);
+}
+.blue {
+  right: -10%;
+  bottom: -20%;
+  background-color: rgba(69, 122, 236, 0.781);
 }
 </style>

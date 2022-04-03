@@ -28,8 +28,8 @@ export default {
   min-width: 40vh;
   max-width: 20%;
   height: 300px;
-  box-shadow: 5px 5px 30px 7px rgba(98, 47, 238, 0.3),
-    -5px -5px 30px 7px rgba(98, 47, 238, 0.22);
+  box-shadow: 5px 5px 30px 7px rgba(69, 122, 236, 0.3),
+    -5px -5px 30px 7px rgba(69, 122, 236, 0.22);
   margin: 30px 10px;
   transition: 0.5s;
   border-radius: 10px;

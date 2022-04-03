@@ -18,7 +18,7 @@ ul {
   list-style: none;
   justify-content: space-evenly;
   align-items: center;
-  background-color: rgba(98, 47, 238, 0.575);
+  background-color: rgba(69, 122, 236, 0.856);
   padding: 20px;
   position: fixed;
   width: 100%;
@@ -32,5 +32,6 @@ a {
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 </style>

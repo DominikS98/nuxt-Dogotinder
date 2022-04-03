@@ -1,6 +1,12 @@
 <template>
   <div class="box">
-    <Card :img="this.parts" :dog="this.breeds" @yes-event="szukaj" />
+    <section class="Menu_box"><Menu /></section>
+    <Card
+      class="card"
+      :img="this.parts"
+      :dog="this.breeds"
+      @yes-event="szukaj"
+    />
   </div>
 </template>
 <script>
@@ -82,5 +88,8 @@ export default {
   align-items: center;
   width: 100%;
   height: 100%;
+}
+.card {
+  margin-top: 4rem;
 }
 </style>
