@@ -10,14 +10,26 @@
         @keyup="searchDogs"
       />
       <button type="submit" @click="searchDogs">szukaj</button>
-      <select name="dogFor" id="dogFor">
+
+      <select
+        v-model="valueOfdogFor"
+        @change="searchdogFor"
+        name="dogFor"
+        id="dogFor"
+      >
         <option value="" selected>Dla kogo</option>
         <option value="hunting">hunting</option>
         <option value="Sheep guarding">Sheep guarding</option>
         <option value="Guarding">Guarding</option>
         <option value="Sled pulling">Sled pulling</option>
       </select>
-      <select name="Temperament" id="Temperament">
+
+      <select
+        v-model="valueOfTemperament"
+        @change="searchTemperament"
+        name="Temperament"
+        id="Temperament"
+      >
         <option value="" selected>Temperament</option>
         <option value="Wild">Wild</option>
         <option value="Hardworking">Hardworking</option>
@@ -49,6 +61,8 @@ export default {
       allDogs: [],
       foundDogs: [],
       valueOfInput: "",
+      valueOfdogFor: "",
+      valueOfTemperament: "",
     };
   },
   async asyncData() {
@@ -82,6 +96,7 @@ export default {
           }
         }
         const dog = {
+          id: item.id,
           breed_group: item.breed_group,
           height: item.height.metric,
           weight: item.weight.metric,
@@ -113,6 +128,65 @@ export default {
           });
           this.dogsTocomponent = this.foundDogs;
         }, 1000);
+      } else {
+        this.dogsTocomponent = this.allDogs;
+      }
+    },
+    searchdogFor() {
+      if (this.valueOfdogFor != "") {
+        if (this.valueOfTemperament != "") {
+          let found = [];
+          this.foundDogs.forEach((element) => {
+            if (element.bred_for != undefined) {
+              if (element.bred_for.includes(this.valueOfdogFor)) {
+                if (this.foundDogs.find((item) => item.id != element.id)) {
+                  found.push(element);
+                }
+              }
+            }
+          });
+          this.dogsTocomponent = found;
+        } else {
+          this.foundDogs = [];
+          this.allDogs.forEach((element) => {
+            if (element.bred_for != undefined) {
+              if (element.bred_for.includes(this.valueOfdogFor)) {
+                this.foundDogs.push(element);
+              }
+            }
+          });
+          this.dogsTocomponent = this.foundDogs;
+        }
+      } else {
+        this.dogsTocomponent = this.allDogs;
+      }
+    },
+
+    searchTemperament() {
+      if (this.valueOfTemperament != "") {
+        if (this.valueOfdogFor != "") {
+          let found = [];
+          this.foundDogs.forEach((element) => {
+            if (element.temperament != undefined) {
+              if (element.temperament.includes(this.valueOfTemperament)) {
+                if (this.foundDogs.find((item) => item.id != element.id)) {
+                  found.push(element);
+                }
+              }
+            }
+          });
+          this.dogsTocomponent = found;
+        } else {
+          this.foundDogs = [];
+          this.allDogs.forEach((element) => {
+            if (element.temperament != undefined) {
+              if (element.temperament.includes(this.valueOfTemperament)) {
+                this.foundDogs.push(element);
+              }
+            }
+          });
+          this.dogsTocomponent = this.foundDogs;
+        }
       } else {
         this.dogsTocomponent = this.allDogs;
       }
