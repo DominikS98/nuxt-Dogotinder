@@ -9,6 +9,9 @@
     <li>
       <NuxtLink to="/">Strona główna</NuxtLink>
     </li>
+    <li>
+      <NuxtLink to="/quiz">Quiz</NuxtLink>
+    </li>
   </ul>
 </template>
 
@@ -25,8 +28,6 @@ ul {
   top: -2%;
   left: 0;
   z-index: 10;
-}
-li {
 }
 a {
   color: white;
