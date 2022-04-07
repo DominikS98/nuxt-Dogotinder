@@ -68,7 +68,7 @@
         </section>
       </div>
     </section>
-    <section v-if="dogsTab">
+    <section class="box_miniCards" v-if="dogsTab">
       <MinCard v-for="dog in this.dogsTab" :key="dog.name" :dog="dog" />
     </section>
   </div>
@@ -86,15 +86,15 @@ export default {
           pytanie: "wielkość psa",
           odpA: {
             answer: "Duży",
-            val: "40",
+            val: "41-70",
           },
           odpB: {
             answer: "Średni",
-            val: "20-30",
+            val: "21-40",
           },
           odpC: {
             answer: "Mały",
-            val: "20",
+            val: "0-20",
           },
           odpD: {
             answer: "",
@@ -143,7 +143,7 @@ export default {
           pytanie: "długość życias",
           odpA: {
             answer: "mniej niż 10lat",
-            val: "10",
+            val: "0-10",
           },
           odpB: {
             answer: "10-12",
@@ -155,7 +155,7 @@ export default {
           },
           odpD: {
             answer: "wiecej niż 14",
-            val: "14",
+            val: "14-20",
           },
         },
       ],
@@ -180,30 +180,56 @@ export default {
     findDong() {
       this.tableAns.push(this.an);
       const dogs = this.dogsAsync;
+      let height = "";
+      let life_span = "";
       dogs.forEach((item) => {
+        if (item.height.metric != undefined) {
+          height = item.height.metric.replace(" ", "");
+          height = height.split("-");
+        }
+        if (item.life_span != undefined) {
+          life_span = item.life_span.replace(" ", "");
+          life_span = life_span.replace("years", "");
+          life_span = life_span.replace(" ", "");
+          life_span = life_span.split("-"); //nan
+        }
+
+        //console.log(height, life_span);
         if (
-          (item.height.metric != undefined &&
-            item.height.metric.includes(this.tableAns[0])) ||
           (item.bred_for != undefined &&
-            item.bred_for.includes(this.tableAns[1])) ||
-          (item.temperament != undefined &&
+            item.bred_for.includes(this.tableAns[1]) &&
+            item.temperament != undefined &&
             item.temperament.includes(this.tableAns[2])) ||
           (item.life_span != undefined &&
             item.life_span.includes(this.tableAns[3]))
         ) {
-          const dog = {
-            id: item.id,
-            breed_group: item.breed_group,
-            height: item.height.metric,
-            weight: item.weight.metric,
-            bred_for: item.bred_for,
-            name: item.name,
-            life_span: item.life_span,
-            temperament: item.temperament,
-            image: item.image.url,
-            name: item.name,
-          };
-          this.dogsTab.push(dog);
+          let hightVal = this.tableAns[0].split("-");
+          let lifeVal = this.tableAns[3].split("-");
+
+          if (
+            parseInt(height[0]) >= parseInt(hightVal[0]) &&
+            parseInt(height[1]) <= parseInt(hightVal[1])
+          ) {
+            if (
+              parseInt(life_span[0]) >= parseInt(lifeVal[0]) &&
+              parseInt(life_span[1]) <= parseInt(lifeVal[1])
+            ) {
+              const dog = {
+                id: item.id,
+                breed_group: item.breed_group,
+                height: item.height.metric,
+                weight: item.weight.metric,
+                bred_for: item.bred_for,
+                name: item.name,
+                life_span: item.life_span,
+                temperament: item.temperament,
+                image: item.image.url,
+                name: item.name,
+              };
+              console.log(dog);
+              this.dogsTab.push(dog);
+            }
+          }
         }
       });
       // if(element > )
@@ -297,5 +323,12 @@ button {
 button:hover {
   opacity: 1;
   color: rgb(28, 3, 255);
+}
+.box_miniCards {
+  margin-top: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 </style>
