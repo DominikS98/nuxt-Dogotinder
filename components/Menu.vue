@@ -15,7 +15,7 @@
   </ul>
 </template>
 
-<style space>
+<style scoped>
 ul {
   display: flex;
   list-style: none;
