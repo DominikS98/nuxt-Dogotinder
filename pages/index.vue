@@ -77,6 +77,10 @@ export default {
 </script>
 
 <style scoped>
+body {
+  overflow-x: hidden;
+  margin: 0;
+}
 div {
   padding: 0;
   margin: 0;
