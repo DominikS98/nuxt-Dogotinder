@@ -1,12 +1,18 @@
 <template>
   <div class="box">
     <section class="Menu_box"><Menu /></section>
-    <Card
-      class="card"
-      :img="this.parts"
-      :dog="this.breeds"
-      @yes-event="szukaj"
-    />
+    <div class="pinder">
+      <Card
+        class="card"
+        :img="this.parts"
+        :dog="this.breeds"
+        @yes-event="szukaj"
+        @nope-event="nope"
+      />
+      <ul>
+        <li v-for="dog in likeDogs" :key="dog.name">{{ dog }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -14,6 +20,7 @@ export default {
   data() {
     return {
       dogs: [],
+      likeDogs: [],
       parts: "",
       breeds: {
         breed_group: "brak danych",
@@ -49,21 +56,23 @@ export default {
             this.breeds.breed_group = this.dogs[0].breeds[0].breed_group;
           }
           if (this.dogs[0] !== undefined) {
-            console.log(this.dogs.bred_for);
             this.breeds.bred_for = this.dogs[0].breeds[0].bred_for;
           }
           if (this.dogs[0].breeds[0] !== undefined) {
-            console.log(this.dogs[0].breeds[0].name);
             this.breeds.name = this.dogs[0].breeds[0].name;
           }
           if (this.dogs[0].breeds[0] !== undefined) {
-            console.log(this.dogs[0].breeds[0].life_span);
             this.breeds.life_span = this.dogs[0].breeds[0].life_span;
           }
           if (this.dogs[0].breeds[0] !== undefined) {
-            console.log(this.dogs[0].breeds[0].temperament);
             this.breeds.temperament = this.dogs[0].breeds[0].temperament;
           }
+          if (
+            this.dogs[0].breeds[0] !== undefined &&
+            !this.likeDogs.includes(this.dogs[0].breeds[0].name)
+          )
+            this.likeDogs.push(this.dogs[0].breeds[0].name);
+
           this.$fetch();
         } else {
           this.$fetch();
@@ -71,6 +80,9 @@ export default {
       } else {
         this.$fetch();
       }
+    },
+    nope() {
+      this.$fetch();
     },
   },
 };
@@ -91,5 +103,15 @@ export default {
 }
 .card {
   margin-top: 4rem;
+}
+.pinder {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+.pinder ul {
+  width: 20%;
 }
 </style>
