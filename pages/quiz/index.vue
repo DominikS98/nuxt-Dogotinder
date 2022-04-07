@@ -1,7 +1,7 @@
 <template>
   <div>
     <Menu></Menu>
-    <section class="box">
+    <section v-if="dogsTab.length == 0" class="box">
       <div class="box__quiz">
         <section class="box__quiz--header">
           <h1>Pytanie nr {{ currentQuestion + 1 }}:</h1>
@@ -67,6 +67,9 @@
           <button v-else @click="findDong">podsumowanie</button>
         </section>
       </div>
+    </section>
+    <section v-if="dogsTab">
+      <MinCard v-for="dog in this.dogsTab" :key="dog.name" :dog="dog" />
     </section>
   </div>
 </template>
@@ -179,14 +182,14 @@ export default {
       const dogs = this.dogsAsync;
       dogs.forEach((item) => {
         if (
-          (item.height.metric.includes(this.tableAns[0]) &&
-            item.height.metric != undefined) ||
-          (item.bred_for.includes(this.tableAns[1]) &&
-            item.bred_for != undefined) ||
-          (item.temperament.includes(this.tableAns[2]) &&
-            item.temperament != undefined) ||
-          (item.life_span.includes(this.tableAns[3]) &&
-            item.life_span != undefined)
+          (item.height.metric != undefined &&
+            item.height.metric.includes(this.tableAns[0])) ||
+          (item.bred_for != undefined &&
+            item.bred_for.includes(this.tableAns[1])) ||
+          (item.temperament != undefined &&
+            item.temperament.includes(this.tableAns[2])) ||
+          (item.life_span != undefined &&
+            item.life_span.includes(this.tableAns[3]))
         ) {
           const dog = {
             id: item.id,
@@ -202,8 +205,6 @@ export default {
           };
           this.dogsTab.push(dog);
         }
-
-        console.log(this.dogsTab);
       });
       // if(element > )
 
