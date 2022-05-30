@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li>
-      <NuxtLink to="/dodaj">Psitinder </NuxtLink>
+      <NuxtLink to="/psiTinder">Psitinder </NuxtLink>
     </li>
     <li>
       <NuxtLink to="/przeglondaj">Zobacz rasy </NuxtLink>
@@ -16,6 +16,14 @@
 </template>
 
 <style scoped>
+a.nuxt-link-active {
+  font-weight: bold;
+}
+/* exact link will show the primary color for only the exact matching link */
+a.nuxt-link-exact-active {
+  color: #00c58e;
+}
+
 ul {
   display: flex;
   list-style: none;
@@ -34,5 +42,7 @@ a {
   text-decoration: none;
   font-size: 1.5rem;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+@media only screen and (max-width: 600px) {
 }
 </style>
