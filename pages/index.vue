@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Menu />
+    <Menu class="menu" />
     <section class="title">
       <div class="greenCircle"></div>
       <h1>Witaj na PsiStronie</h1>
@@ -77,7 +77,7 @@ export default {
 </script>
 
 <style scoped>
-body {
+div {
   overflow-x: hidden;
   margin: 0;
 }
@@ -96,7 +96,7 @@ div {
   margin-bottom: 1rem;
 }
 .title h1 {
-  font-size: 8em;
+  font-size: 8vw;
   background: linear-gradient(
     53deg,
     rgb(19, 255, 98) 0%,
@@ -108,7 +108,7 @@ div {
   color: transparent;
 }
 .title h2 {
-  font-size: 3em;
+  font-size: 3vh;
 }
 .greenCircle {
   position: absolute;
@@ -126,7 +126,7 @@ div {
 }
 .text_Witoldzie {
   width: 40%;
-  font-size: 3ch;
+  font-size: 2vw;
   line-height: 150%;
 }
 .obrazek {
@@ -145,7 +145,7 @@ div {
   bottom: 5%;
   right: 5%;
   transform: rotate(-25deg);
-  font-size: 2rem;
+  font-size: 2vw;
   text-shadow: 1px 1px 4px rgb(253, 253, 253);
   z-index: 2;
 }
@@ -195,7 +195,7 @@ img:hover {
 }
 .podStrony_box h4 {
   margin-top: 4rem;
-  font-size: 2.2em;
+  font-size: 2.2vw;
   text-align: center;
 }
 .podStrony_box a {
@@ -223,10 +223,10 @@ img:hover {
   text-align: center;
 }
 .quiz h2 {
-  font-size: 4em;
+  font-size: 4vw;
 }
 .quiz p {
-  font-size: 1.5em;
+  font-size: 1.5vw;
 }
 .boxColor {
   position: relative;
@@ -254,6 +254,40 @@ img:hover {
   100% {
     outline: solid 0px rgb(255, 255, 255);
     outline-offset: 0px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .witold {
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .obrazek {
+    width: 70%;
+  }
+  .text_Witoldzie {
+    font-size: 5vw;
+    width: 90%;
+  }
+  .podStrony {
+    flex-flow: column;
+    align-items: center;
+  }
+  .podStrony_box {
+    width: 70%;
+  }
+  .podStrony_box h4 {
+    font-size: 5vw;
+  }
+  .quiz {
+    width: 90%;
+  }
+  .quiz h2 {
+    font-size: 9vw;
+  }
+  .quiz p {
+    font-size: 5vw;
+    text-align: left;
   }
 }
 </style>

@@ -10,6 +10,7 @@
         @nope-event="nope"
       />
       <ul>
+        <h1>Wybrane psy</h1>
         <li v-for="dog in likeDogs" :key="dog.name">{{ dog }}</li>
       </ul>
     </div>
@@ -113,5 +114,24 @@ export default {
 }
 .pinder ul {
   width: 20%;
+}
+@media only screen and (max-width: 600px) {
+  .pinder {
+    flex-flow: column;
+  }
+  .pinder ul {
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    list-style: none;
+  }
+  .pinder ul h1 {
+    font-size: 15vw;
+  }
+  .pinder ul li {
+    padding: 10px;
+    font-size: 8vw;
+    border-bottom: 1px solid #ccc;
+  }
 }
 </style>
