@@ -243,4 +243,9 @@ input:focus {
   opacity: 1;
   border-bottom: 1px solid black;
 }
+@media only screen and (max-width: 600px) {
+  .tags_box {
+    flex-flow: column;
+  }
+}
 </style>
