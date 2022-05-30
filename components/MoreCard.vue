@@ -66,7 +66,7 @@ p {
 p::after {
   position: absolute;
   display: block;
-  content: '';
+  content: "";
   border: 1px solid rgb(71, 231, 119);
   width: 10%;
   box-sizing: border-box;
@@ -101,5 +101,16 @@ span:hover {
   right: -10%;
   bottom: -20%;
   background-color: rgba(69, 122, 236, 0.781);
+}
+@media only screen and (max-width: 600px) {
+  .card {
+    top: 5%;
+    width: 90%;
+    height: 70vh;
+    flex-flow: column;
+  }
+  .card_img {
+    display: none;
+  }
 }
 </style>
